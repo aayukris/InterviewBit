@@ -1,41 +1,24 @@
-import java.util.ArrayList;
-class Solution {
-    public int solve(ArrayList<Integer> A, int B) {
-        int maxSum=0,newSum=0;
-        for(int i=A.size()-B,count=B;count>0;i++,count--){
-            System.out.println(i);
-            if(i==A.size()-B){
-                for(int j=0;j<B;j++){
-                    maxSum=maxSum+A.get(i+j);
-                    System.out.println(maxSum);
-                }
-                newSum=maxSum;
-            }
-            else{
-                System.out.println(A.get((i-1)%A.size()));
-                System.out.println(A.get((i+B-1)%A.size()));
-                newSum=newSum-A.get((i-1)%A.size())+A.get((i+B-1)%A.size());
-                System.out.println(newSum);
-            }
-            if(newSum>maxSum){
-                maxSum=newSum;
-            }
-        }
-        return maxSum;
-    }
-}
-class Main {
-  public static void main(String[] args){
-    //   int[] A = {5,-2,3,1,2};
-      ArrayList<Integer> A = new ArrayList<>();
-      A.add(5);
-      A.add(-2);
-      A.add(3);
-      A.add(1);
-      A.add(2);
-      int B = 3;
-      Solution s1 = new Solution();
-      s1.solve(A,B);
-    }
-}
 
+public class Solution {
+    public int solve(int[] arr, int K) {
+        int size =arr.length;
+    // Initialize variables
+        int curr_points = 0;
+        int max_points = 0;
+        // Iterate over first K elements of array and update
+        // the value for curr_points
+        for (int i = 0; i < K; i++)
+            curr_points += arr[i];
+        // Update value for max_points
+        max_points = curr_points;
+        // j points to the end of the array
+        int j = size - 1;
+        for (int i = K - 1; i >= 0; i--) {
+            curr_points = curr_points + arr[j] - arr[i];
+            max_points = Math.max(curr_points, max_points);
+            j--;
+        }
+        // Return the final result
+        return max_points;
+    }
+}
