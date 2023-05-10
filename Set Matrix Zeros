@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+public class Solution {
+	public void setZeroes(ArrayList<ArrayList<Integer>> a) {
+        int s1 = a.size();
+        int s2 = a.get(0).size();
+        boolean[] rows = new boolean[s1];
+        boolean[] cols = new boolean[s2];
+        
+        for (int i = 0; i < a.size(); i++) {
+            List<Integer> row = a.get(i);
+            for (int j = 0; j < row.size(); j++) {
+                if(row.get(j)==0)
+                {
+                    rows[i]=cols[j]=true;
+                }
+            }
+        }
+        
+         for (int i = 0; i < a.size(); i++) {
+            List<Integer> row = a.get(i);
+            for (int j = 0; j < row.size(); j++) {
+                if(rows[i]||cols[j])
+                {
+                    row.set(j,0);
+                }
+            }
+        }
+	}
+}
