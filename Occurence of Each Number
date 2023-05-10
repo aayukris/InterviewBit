@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+public class Solution {
+    public int[] findOccurences(int[] A) {
+        Arrays.sort(A);
+        ArrayList<Integer> A1 = new ArrayList<>();
+        int i=0;
+       while(i<A.length)
+       {
+           int count=0;
+           int j=0;
+           for(j=i;j<A.length;j++)
+           {
+               if((A[i]==A[j])&&(j<A.length-1))
+               count+=1;
+               else if((A[i]==A[j])&&(j==A.length-1))
+               {
+                   count+=1;
+                   A1.add(count);
+               }
+               else
+               {
+                   A1.add(count);
+                   break;
+               }
+           }
+           i=j;
+       }
+       int size = A1.size();
+        int[] B = new int[size];
+        for(int k=0;k<size;k++)
+        {
+            B[k] = A1.get(k);
+        }
+        return B;
+    }
+}
