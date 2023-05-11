@@ -1,0 +1,39 @@
+public class Solution {
+    public int highestScore(String[][] A) {
+        int N = A.length;
+
+        HashMap<String, List<Integer>> marksMap = new HashMap<>();
+
+        for (int i = 0; i < N; i++) {
+            String name = A[i][0];
+            int marks = Integer.parseInt(A[i][1]);
+
+            if (marksMap.containsKey(name)) {
+                marksMap.get(name).add(marks);
+            } else {
+                List<Integer> marksList = new ArrayList<>();
+                marksList.add(marks);
+                marksMap.put(name, marksList);
+            }
+        }
+
+        double maxAverage = 0.0;
+
+        for (List<Integer> marksList : marksMap.values()) {
+            int sum = 0;
+            int count = marksList.size();
+
+            for (int marks : marksList) {
+                sum += marks;
+            }
+
+            double average = (double) sum / count;
+            maxAverage = Math.max(maxAverage, average);
+        }
+
+        maxAverage =(int) Math.floor(maxAverage);
+        int max = (int)maxAverage;
+
+        return max;
+}
+}
