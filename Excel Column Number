@@ -1,0 +1,12 @@
+public class Solution {
+    public int titleToNumber(String A) {
+        int result = 0;
+        int n = A.length();
+      for (int i = 0; i < n; i++) {
+            char c = A.charAt(n - 1 - i);
+            int value = c - 'A' + 1;
+            result += value * Math.pow(26, i);
+        }
+        return result;
+    }
+}
