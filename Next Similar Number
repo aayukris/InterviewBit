@@ -1,0 +1,12 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+string Solution::solve(string A) {
+     string B = A;
+        next_permutation(begin(B), end(B));
+        if(B>A)
+        return B;
+        else
+        return "-1";
+}
