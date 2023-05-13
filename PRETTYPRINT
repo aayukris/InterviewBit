@@ -1,0 +1,39 @@
+public class Solution {
+    public int[][] prettyPrint(int n) {
+        int size = 2 * n - 1;
+        int[][] matrix = new int[size][size];
+
+        int startRow = 0, endRow = size - 1;
+        int startCol = 0, endCol = size - 1;
+        int value = n;
+
+        while (startRow <= endRow && startCol <= endCol) {
+            // Fill top row
+            for (int col = startCol; col <= endCol; col++) {
+                matrix[startRow][col] = value;
+            }
+
+            // Fill right column
+            for (int row = startRow + 1; row <= endRow; row++) {
+                matrix[row][endCol] = value;
+            }
+
+            // Fill bottom row
+            for (int col = endCol - 1; col >= startCol && startRow != endRow; col--) {
+                matrix[endRow][col] = value;
+            }
+
+            // Fill left column
+            for (int row = endRow - 1; row > startRow && startCol != endCol; row--) {
+                matrix[row][startCol] = value;
+            }
+
+            startRow++;
+            endRow--;
+            startCol++;
+            endCol--;
+            value--;
+        }
+        return matrix;
+    }
+}
