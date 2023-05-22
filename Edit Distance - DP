@@ -1,0 +1,36 @@
+import java.lang.*;
+public class Solution {
+    public int minDistance(String A, String B) {
+        int x = A.length();
+        int y = B.length();
+        
+        if(x==0 || y==0)
+        return 0;
+        
+        int [][] arr = new int[x+1][y+1];
+        
+        for(int i=0;i<=x;i++)
+        arr[i][0]=i;
+        
+        for(int i=0;i<=y;i++)
+        arr[0][i]=i;
+        
+        for(int i=1;i<=x;i++)
+        {
+            for(int j=1;j<=y;j++)
+            {
+                if(A.charAt(i-1)==B.charAt(j-1))
+                arr[i][j] = arr[i-1][j-1];
+                else
+                {
+                    int replace = 1+arr[i-1][j-1];
+                    int insert = 1+arr[i-1][j];
+                    int delete = 1+arr[i][j-1];
+                    
+                    arr[i][j] = Math.min(replace,Math.min(insert,delete));
+                }
+            }
+        }
+        return arr[x][y];
+    }
+}
